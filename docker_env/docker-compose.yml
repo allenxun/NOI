@@ -1,0 +1,9 @@
+version: "3"
+services:
+  noi:
+    restart: always
+    image: allenxun/noi:0.1
+    container_name: mynoi
+    volumes:
+      - ../:/home/noi
+    tty: true
