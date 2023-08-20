@@ -16,7 +16,7 @@
     c.如果该数字在右上角，或者该数字的右上方已有数字，则下一个数字写在该数字的下方
  *
  * 输入
- *     一个数字N（N&lt;=20）
+ *     一个数字N（N<=20）
  *
  * 输出
  *     按上方法构造的2N-1 * 2N-1的幻方
@@ -37,8 +37,44 @@
  
 #include <iostream>
 using namespace std;
- 
-int main(){
-    
-    return 0;
-}
+
+int main() {
+	int n, i = 0, j = 0, k = 1, size = 0, arr[40][40] = { 0 };
+	cin >> n;
+
+	j = n - 1;
+	size = (2 * n - 1) * (2 * n - 1);
+
+	arr[i][j] = k;
+	k++;
+	while (size > 1) {
+		if (i == 0 && j != 2 * n - 2) {
+			i = 2 * n - 2;
+			j = j + 1;
+			arr[i][j] = k;
+			k++;
+		} else if (i !=0 && j == 2 * n - 2) {
+			i = i - 1;
+			j = 0;
+			arr[i][j] = k;
+			k++;
+		} else if (i == 0 && j == 2 * n - 2 || arr[i - 1][j + 1] != 0) {
+			i = i + 1;
+			arr[i][j] = k;
+			k++; 
+		} else {
+			i = i - 1;
+			j = j + 1;
+			arr[i][j] = k;
+			k++; 
+		} 
+		size--;
+	}
+	for (int x = 0; x < 2 * n - 1; x++) {
+		for (int y = 0; y < 2 * n - 1; y++) {
+			cout << arr[x][y] << " ";
+		} 
+		cout << endl;
+	} 
+	return 0;
+} 

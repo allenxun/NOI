@@ -39,56 +39,69 @@
 
  *
  * 提示
- *      
+ *
  */
- 
+
 #include <iostream>
 using namespace std;
 
-int *max_min(int *a, int n){
-    int max = a[0], min = a[0];
-    for (int i = 0;i<n;i++){
-        if (a[i] > max){
-            max = a[i];
-        }
-        if (a[i] < min){
-            min = a[i];
-        }
-    }
-    int *p = new int[2];
-    p[0] = max;
-    p[1] = min;
-    return p;
-}
- 
-int **new_a(int **a, int n,int rowmin,int colmin){
-    int p[n - 1][n - 1];
-
-    for (int i = 0;i<n-1;i++){
-        for (int j = 0; j < n-1;j++){
-            if(i==1||j==1){
-                continue;
-            }else if(i==0){
-                if(j==0){
-                    p[0][0] = a[0][0];
-                }else{
-                    p[0][j] = a[0][j]
-                }
-            }
-        }
-    }
-        return p;
-}
-
-int main(){
-    int n;
+int main()
+{
+    int a[101][101];
+    int n, m;
     cin >> n;
-    int a[n][n];
-    for (int i = 0;i<n;i++){
-        for (int j = 0;j<n;j++){
+    m = n;
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= n; j++)
+        {
             cin >> a[i][j];
         }
     }
+    for (int i = 1; i <= n; i++)
+    {
+        cout << a[2][2] << endl;
+        for (int i = 1; i <= m; i++)
+        {
+            int x = 0x7FFFFFFF;
+            for (int j = 1; j <= m; j++)
+            {
+                x = min(x, a[i][j]);
+            }
+            for (int j = 1; j <= m; j++)
+            {
+                a[i][j] -= x;
+            }
+        }
+        for (int i = 1; i <= m; i++)
+        {
+            int x = 0x7FFFFFFF;
+            for (int j = 1; j <= m; j++)
+            {
+                x = min(x, a[j][i]);
+            }
 
-    return 0;
+            for (int j = 1; j <= m; j++)
+            {
+                a[j][i] -= x;
+            }
+        }
+        for (int i = 2; i <= m - 1; i++)
+        {
+            for (int j = 1; j <= m; j++)
+            {
+                a[i][j] = a[i + 1][j];
+            }
+        }
+
+        for (int j = 2; j <= m; j++)
+        {
+            for (int i = 1; i <= m - 1; i++)
+            {
+                a[i][j] = a[i][j + 1];
+            }
+        }
+
+        m--;
+    }
 }
