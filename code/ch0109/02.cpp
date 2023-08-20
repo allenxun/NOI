@@ -11,22 +11,22 @@
 
  *
  * 输入
- *     第一行输入一个正整数N（N &lt;= 100），表示学生人数。接着输入N行，每行格式如下：
-分数 姓名
-分数是一个非负整数，且小于等于100；
-姓名为一个连续的字符串，中间没有空格，长度不超过20。
-数据保证最高分只有一位同学。
+ *     第一行输入一个正整数N（N <= 100），表示学生人数。接着输入N行，每行格式如下：
+        分数 姓名
+        分数是一个非负整数，且小于等于100；
+        姓名为一个连续的字符串，中间没有空格，长度不超过20。
+        数据保证最高分只有一位同学。
  *
  * 输出
  *     获得最高分数同学的姓名。
  *
  * 样例输入
  *     5
-87 lilei
-99 hanmeimei
-97 lily
-96 lucy
-77 jim
+        87 lilei
+        99 hanmeimei
+        97 lily
+        96 lucy
+        77 jim
  *
  * 样例输出
  *     hanmeimei
@@ -36,9 +36,23 @@
  */
  
 #include <iostream>
+#include <string>
 using namespace std;
  
 int main(){
-    
+    int n;
+    cin >> n;
+    int max = 0;
+    string name;
+    for(int i = 0; i < n; i++){
+        int score;
+        string s;
+        cin >> score >> s;
+        if(score > max){
+            max = score;
+            name = s;
+        }
+    }
+    cout << name;
     return 0;
 }
