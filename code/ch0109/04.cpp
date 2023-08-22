@@ -26,14 +26,16 @@
  *      每两个相邻数据项之间用一个空格分隔。
  *
  * 输出
- *     包括三行，第一行是获得最多奖金的学生的姓名，第二行是这名学生获得的奖金总数。如果有两位或两位以上的学生获得的奖金最多，输出他们之中在输入文件中出现最早的学生的姓名。第三行是这N个学生获得的奖学金的总数。
+ *     包括三行，第一行是获得最多奖金的学生的姓名.
+ *     第二行是这名学生获得的奖金总数。如果有两位或两位以上的学生获得的奖金最多，输出他们之中在输入文件中出现最早的学生的姓名。
+ *     第三行是这N个学生获得的奖学金的总数。
  *
  * 样例输入
  *     4
-YaoLin 87 82 Y N 0
+YaoLin    87 82 Y N 0
 ChenRuiyi 88 78 N Y 1
-LiXin 92 88 N N 0
-ZhangQin 83 87 Y N 1
+LiXin     92 88 N N 0
+ZhangQin  83 87 Y N 1
 
  *
  * 样例输出
@@ -54,6 +56,53 @@ int main(){
     int n;
     cin >> n;
     string name[n];
+    int score[n];
+    int class_score[n];
+    char is_cadre[n];
+    char is_western[n];
+    int paper[n];
+    for (int i = 0; i < n;i++){
+       cin >> name[i];
+       cin >> score[i];
+       cin >> class_score[i];
+       cin >> is_cadre[i];
+       cin >> is_western[i];
+       cin >> paper[i];
+    }
     
+       int money[n];
+       for (int i = 0; i < n;i++){
+           money[i] = 0;
+           if(score[i]>80&&paper[i]>=1){
+               money[i] += 8000;
+           }
+           if(score[i]>85&&class_score[i]>80){
+               money[i] += 4000;
+           }
+           if(score[i]>90){
+               money[i] += 2000;
+           }
+           if(score[i]>85&&is_western[i]=='Y'){
+               money[i] += 1000;
+           }
+           if(class_score[i]>80&&is_cadre[i]=='Y'){
+               money[i] += 850;
+           }
+       }
+       int max = 0;
+       int max_index = 0;
+       for (int i = 0; i < n;i++){
+           if(money[i]>max){
+               max = money[i];
+               max_index = i;
+           }
+       }
+       cout << name[max_index] << endl;
+       cout << max << endl;
+       int sum = 0;
+       for (int i = 0; i < n;i++){
+           sum += money[i];
+       }
+       cout << sum << endl;
     return 0;
 }

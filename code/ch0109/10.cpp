@@ -11,7 +11,7 @@
 
  *
  * 输入
- *     一行输入一个正整数n（n &lt;= 30）。
+ *     一行输入一个正整数n（n <= 30）。
 之后的n行，每行包含不超过100个无符号整数，整数之间以一个逗号分开。
  *
  * 输出
@@ -34,11 +34,58 @@
  * 提示
  *      
  */
- 
+
 #include <iostream>
+#include <string>
+#include <vector>
 using namespace std;
- 
-int main(){
-    
+void SplitString(const string &s, vector<string> &v, const string &c)
+{
+    string::size_type pos1, pos2;
+    pos2 = s.find(c);
+    pos1 = 0;
+    while (string::npos != pos2)
+    {
+        v.push_back(s.substr(pos1, pos2 - pos1));
+        pos1 = pos2 + c.size();
+        pos2 = s.find(c, pos1);
+    }
+    if (pos1 != s.length())
+        v.push_back(s.substr(pos1));
+}
+int main()
+{
+    string line;
+    int n, i, j, x, max = 0, a[31];
+    cin >> n;
+    for (i = 1; i <= n; i++)
+    {
+        cin >> line;
+        vector<string> v;
+        SplitString(line, v, ",");
+        int maxline = 0;
+        for (j = 0; j < v.size(); j++)
+        {
+            x = std::stoi(v[j]);
+            if (x > maxline)
+                maxline = x; 
+            if (x > max)
+                max = x; 
+        }
+        a[i] = maxline;
+    }
+    cout << max << endl;
+    bool first = true;
+    for (i = 1; i <= n; i++)
+    {
+        if (a[i] == max)
+        {
+            if (!first)
+                cout << ",";
+            cout << i;
+            first = false;
+        }
+    }
+    cout << endl;
     return 0;
 }

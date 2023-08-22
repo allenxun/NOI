@@ -12,14 +12,14 @@
  *
  * 输入
  *     第一行为M，表示整数个数，整数个数不会大于10000；
-第二行为M个整数，以空格隔开，每个整数的绝对值不会大于10000。
+       第二行为M个整数，以空格隔开，每个整数的绝对值不会大于10000。
  *
  * 输出
  *     输出M个数中最大值和最小值的差。
  *
  * 样例输入
  *     5
-2 5 7 4 2
+        2 5 7 4 2
  *
  * 样例输出
  *     5
@@ -32,6 +32,22 @@
 using namespace std;
  
 int main(){
-    
+    int n;
+    cin >> n;
+    int a[n];
+    for (int i = 0;i < n;i++){
+        cin >> a[i];
+    }
+    int max = a[0], min = a[0];
+    for (int i = 0;i < n;i++){
+        if (a[i] > max){
+            max = a[i];
+        }
+        if (a[i] < min){
+            min = a[i];
+        }
+    }
+    cout << max - min << endl;
+
     return 0;
 }
