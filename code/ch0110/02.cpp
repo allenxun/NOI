@@ -12,8 +12,8 @@
  *
  * 输入
  *     共2行：
-第1行为 N；
-第2行为 N 个正整数，其间用空格间隔。
+        第1行为 N；
+        第2行为 N 个正整数，其间用空格间隔。
  *
  * 输出
  *     增序输出的奇数序列，数据之间以逗号间隔。数据保证至少有一个奇数。
@@ -30,9 +30,29 @@
  */
  
 #include <iostream>
+#include <algorithm>
+#include <vector>
+
 using namespace std;
- 
+
 int main(){
-    
+    int a[500], b[500], n, flag = 0, i;
+    cin >> n;
+    for (i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        if (a[i] % 2 != 0)
+        {
+            b[flag] = a[i];
+            flag++;
+        }
+    }
+    sort(b, b + flag);
+    for (i = 0; i < flag; i++)
+    {
+        cout << b[i];
+        if (i != flag - 1)
+            cout << ",";
+    }
     return 0;
 }

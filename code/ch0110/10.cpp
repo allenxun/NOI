@@ -21,22 +21,46 @@
  *
  * 样例输出
  *     Chinese
-Peking
-She
-University
-go
-study
-to
-wants
+        Peking
+        She
+        University
+        go
+        study
+        to
+        wants
  *
  * 提示
  *      
  */
  
 #include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+
+
 using namespace std;
  
 int main(){
-    
-    return 0;
+    string str[101];
+    int n = 0;
+    while (cin >> str[n])
+    {
+        bool flag = false;
+        for (int i = 0; i < n;i++){
+            if(str[i].compare(str[n])==0){
+                flag = true;
+                break;
+            }
+        }
+        if(!flag)
+            n++;
+    }
+
+    sort(str,str+n);
+
+    for (int i = 0;i<n;i++){
+        cout << str[i] << endl;
+    }
+        return 0;
 }

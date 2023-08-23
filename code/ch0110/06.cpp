@@ -26,9 +26,35 @@
  */
  
 #include <iostream>
+#include <algorithm>
+#include <vector>
 using namespace std;
- 
+bool cmp(int a, int b)
+{
+    if (a % 2 == 1 && b % 2 == 0)
+        return true;
+    else if (a % 2 == 0 && b % 2 == 1)
+        return false;
+    else
+    {
+        if (a % 2 == 0 && b % 2 == 0)
+            return a < b;
+        else
+            return a > b;
+    }
+}
+
 int main(){
-    
-    return 0;
+    int a[10];
+    for (int i = 0; i < 10; i++)
+    {
+        cin >> a[i];
+    }
+
+    sort(a, a + 10, cmp);
+
+    for (int i = 0; i < 10; i++)
+    {
+        cout << a[i] << " ";
+    }
 }
